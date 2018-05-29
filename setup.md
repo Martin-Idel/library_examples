@@ -1,8 +1,12 @@
-# Examples
+# All examples
+
+## Example 1: Using g++
 
 `g++ first_example.cpp -o first_example.o`
 
-## Creating a static library
+## Example 2: Creating + linking a static library
+
+### Creating a static library
 
 Option -c to compile (otherwise we need a main function)
 Option -g to add debug information
@@ -13,17 +17,20 @@ Link object files into static library
 
 `ar -cvq libfirst.a first_library_file.o`
 
-## Linking a static library
+Use `nm libfirst.a` to have a look inside.
+
+### Linking a static library
 
 Linking a static library into a function.
 
 - Even in the same folder, we need to add the path to the library
 - `lib` prefix gets added automatically by `-l`
 
-`g++ -std=c++14 linking_a_library.cpp -L./ -lfirst` (old folder structure)
 `g++ -std=c++14 -I.. linking_a_library.cpp -L../first_library/ -lfirst -o linked_statically.out`
 
-## Creating a shared library
+## Example 3: Creating and Linking a Shared Library
+
+### Creating a shared library
 
 Need to create position independent code first (turns out to have the same size here):
 
@@ -31,9 +38,10 @@ Need to create position independent code first (turns out to have the same size 
 
 Note: Difference between -fpic and -fPIC (latter will always work but binary might be larger) Example???
 
-`g++ -shared -Wl,-soname,libfirst_shared_so.1 -o libfirst_shared.so.1.0.0 first_poi_library_file.o`
+`g++ -shared -Wl,-soname,libfirst_shared.so.1 -o libfirst_shared.so.1.0.0 first_poi_library_file.o`
 
 `-Wl,-soname` sets the SONAME: should be counted up when ABI changes. The library name is the "real name".
+`-Wl,` is the prefix for linker options.
 
 We need to create symlinks to correct name:
 
@@ -43,17 +51,22 @@ We need to create symlinks to correct name:
 Look at e.g. the SONAME:
 `objdump -p libfirst_shared.so`
 
-## Linking a shared library
+### Linking a shared library
 
 `g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../first_library/ -lfirst_shared -o linked_dynamically.out`
 
 For running, need to update LD_LIBRARY_PATH first:
-`export LD_LIBRARY_PATH=/home/martin/Documents/SharedLibraries/first_library`
+`export LD_LIBRARY_PATH=/home/martin/Documents/SharedLibraries/example3/first_library`
 Also see:
 `objdump -p linked_dynamically.out` contains `NEEDED libfirst_shared.so.1`
 (`-p` displays information from the ELF header)
 
-## Symbol visiblity
+Alternatively (better), use the `rpath` to provide the information:
+`g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../first_library/ -lfirst_shared -Wl,-rpath,../first_library/ -o linked_dynamically.out`
+
+See the "RPATH" part of `objcump -p linked_dynamicall.out`.
+
+## Example 4: Symbol visibility in a shared library
 
 `g++ -g -fPIC visible_library.cpp -shared -Wl,-soname,libvisible.so.1 -o libvisible.so.1.0.0`
 `ln -s libvisible.so.1.0.0 libvisible.so.1`
@@ -67,10 +80,15 @@ Now let's look at the symbol table:
 
 Problem: We don't really want to export the factorial function. Now we could use it somewhere...
 
-`g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../library_visibility/ -lvisible -o linked_dynamically_visible.out`
-`export LD_LIBRARY_PATH=/home/martin/Documents/SharedLibraries/library_visibility`
+`g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../library_visibility/ -lvisible -Wl,-rpath,../library_visibility/ -o linked_dynamically_visible.out`
 
-The linking should have gone wrong if we want to hide our factorial implementation:
+### Solution 1: static keyword
+
+Static functions are not globally exported, in fact, variables only exist at file scope (C spec).
+To test, add "static" keyword in `.hpp` file and recompile.
+Problem: "static" has other meanings, too...
+
+### Solution 2: visiblity
 
 `g++ -g -fPIC -fvisibility=hidden visible_library.cpp -shared -Wl,-soname,libvisible.so.1 -o libvisible.so.1.0.0`
 
@@ -82,8 +100,29 @@ The second column indicates `l`, which implies that this symbol (which is a func
 Hence, export symbol: `__attribute__ ((visibility ("default")))`
 Also: look at the size difference (e.g. 10184 with only one symbol exposed, 10352 with more symbols)
 
+## Example 5: Symbol visibility while linking a static library in a shared library
+
+First compile and link the static library:
+
+`g++ -c -fPIC -g visibility_static.cpp -o visibility_static.o`
+`ar -cvq libvisibilitystatic.a visibility_static.o`
+
+Then compile  the shared library
+
+`g++ -g -fPIC -fvisibility=hidden visible_library.cpp -shared -Wl,-soname,libvisible.so.1 -o libvisible.so.1.0.0 -Wl,--whole-archive ../library_static/libvisibilitystatic.a -Wl,--no-whole-archive`
+`ln -s libvisible.so.1.0.0 libvisible.so.1`
+`ln -s libvisible.so.1 libvisible.so`
+
+The `--whole-archive` option is necessary since somewhere between gcc 3 and 4.
+However, note that the factorial function is now visible in the shared library.
+
+`g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../library_visibility/ -lvisible -Wl,-rpath,../library_visibility/ -o linked_dynamically_visible.out`
+
+If we want to hide those symbols, either recompile static library, or use linker scripts.
+
 ## TODO
 
 - Windows VM...
 - More on objdump and/or readelf
 - Templates and symbols
+- Class export symbols
