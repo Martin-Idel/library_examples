@@ -1,18 +1,16 @@
 #include "shape.hpp"
 
-#include <iostream>
-
 namespace shape_lib
 {
 
 Shape::Shape(uint32_t corner_number)
-: corner_number_(CornerNumber(corner_number)) {}
+: corner_number_(CornerNumber(corner_number)) 
+{}
 
 Shape::~Shape() = default;
 
-void Shape::draw() const 
+void Shape::draw() const
 {
     std::cout << "This shape has " << corner_number_.getNumberOfCorners() << " corners!" << std::endl;
 }
-
 }

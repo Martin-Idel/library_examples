@@ -138,7 +138,7 @@ Note: We can change the implementation of the function draw. As long as we don't
 
 Set up shared library with classes again:
 
-`g++ -g -fPIC shape.cpp -shared -Wl,-soname,libshape.so.1 -o libshape.so.1.0.0`
+`g++ -g -fPIC shape.cpp corner_number.cpp -shared -Wl,-soname,libshape.so.1 -o libshape.so.1.0.0`
 `ln -s libshape.so.1.0.0 libshape.so.1`
 `ln -s libshape.so.1 libshape.so`
 
@@ -146,12 +146,23 @@ Linking example main again:
 
 `g++ -std=c++14 -I.. using_shape.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_shape.out`
 
-Results in a warning, because we declared `CornerNumber` used in `Shape` as hidden. Here is how to get rid of the warning:
+Results in a warning, because we declared `CornerNumber` used in `Shape` as hidden.
 
 - explicitly declare `Shape` as "default" (bad)
 - compile with `fvisibility=hidden` and declare `Shape` as "default" and don't declare `CornerNumber` as hidden (bad)
-- use a pointer in `Shape` (better)
-- only expose function symbols (probably best)
+- Forward declare your class `Shape`
+
+But everything works, so where is the problem?
+
+The "= default" in `shape.cpp` is not very nice, let's just put it in the header. Compile and link, we get an error:
+
+`Warning: undefined reference to »shape_lib::CornerNumber::~CornerNumber()«`
+
+- compiler needs symbol definition to generate functions, hence the previous warning
+- the first two "fixes" above don't actually change anything
+- only forwarding works: then the compiler actually never inlines, so the information is not necessary
+
+NEEDED: only expose functions - is that enough to derive?
 
 ## Example 8: Templates
 

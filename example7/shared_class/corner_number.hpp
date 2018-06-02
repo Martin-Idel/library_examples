@@ -5,12 +5,10 @@ namespace shape_lib
 class __attribute__ ((visibility ("hidden"))) CornerNumber
 {
 public:
-    CornerNumber(uint32_t number)
-    : corner_number_(number)
-    {}
-    ~CornerNumber() = default;
+    CornerNumber(uint32_t number);
+    ~CornerNumber();
 
-    uint32_t getNumberOfCorners() const {return corner_number_;}
+    uint32_t getNumberOfCorners() const;
 
 private:
     uint32_t corner_number_;
