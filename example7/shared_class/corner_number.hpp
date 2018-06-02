@@ -2,7 +2,7 @@
 
 namespace shape_lib
 {
-class CornerNumber
+class __attribute__ ((visibility ("hidden"))) CornerNumber
 {
 public:
     CornerNumber(uint32_t number)

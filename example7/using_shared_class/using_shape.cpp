@@ -1,11 +1,9 @@
-#include "./shapes.hpp"
+#include "../shared_class/shape.hpp"
 
 int main() {
-    auto shapes = Shapes();
+    shape_lib::Shape shape = shape_lib::Shape(5);
 
-    shapes.addShape(4);
-    shapes.addShape(6);
-    shapes.drawAllShapes();
+    shape.draw();
 
     return 0;
 }

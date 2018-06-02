@@ -132,9 +132,26 @@ Linking example main:
 
 `g++ -std=c++14 -I.. using_shape.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_shape.out`
 
-Note: We can change the implementation of the function draw. As long as we don't change the ABI, we can everything, as the library is only loaded at startup time.
+Note: We can change the implementation of the function draw. As long as we don't change the ABI, we can change everything, as the library is only loaded at startup time.
 
 ## Example 7: Symbol visibility and more complicated class setups
+
+Set up shared library with classes again:
+
+`g++ -g -fPIC shape.cpp -shared -Wl,-soname,libshape.so.1 -o libshape.so.1.0.0`
+`ln -s libshape.so.1.0.0 libshape.so.1`
+`ln -s libshape.so.1 libshape.so`
+
+Linking example main again:
+
+`g++ -std=c++14 -I.. using_shape.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_shape.out`
+
+Results in a warning, because we declared `CornerNumber` used in `Shape` as hidden. Here is how to get rid of the warning:
+
+- explicitly declare `Shape` as "default" (bad)
+- compile with `fvisibility=hidden` and declare `Shape` as "default" and don't declare `CornerNumber` as hidden (bad)
+- use a pointer in `Shape` (better)
+- only expose function symbols (probably best)
 
 ## Example 8: Templates
 
