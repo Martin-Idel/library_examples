@@ -2,10 +2,12 @@
 
 ## Links
 
-http://tldp.org/HOWTO/Program-Library-HOWTO/shared_libraries.html
-http://anadoxin.org/blog/control-over-symbol-exports-in-gcc.html
-https://www.ibm.com/developerworks/aix/library/au-aix-symbol-visibility/index.html
-https://www.mpcdf.mpg.de/services/computing/software/libraries/static-and-dynamic-linking-on-linux-systems
+<http://tldp.org/HOWTO/Program-Library-HOWTO/shared_libraries.html>
+<http://anadoxin.org/blog/control-over-symbol-exports-in-gcc.html>
+<https://www.ibm.com/developerworks/aix/library/au-aix-symbol-visibility/index.html>
+<https://www.mpcdf.mpg.de/services/computing/software/libraries/static-and-dynamic-linking-on-linux-systems>
+<https://gcc.gnu.org/wiki/Visibility>
+<https://www.ibm.com/developerworks/aix/library/au-aix-symbol-visibility-part2/index.html>
 
 ## Environment Variables
 

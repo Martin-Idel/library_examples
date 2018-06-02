@@ -72,7 +72,7 @@ See the "RPATH" part of `objcump -p linked_dynamicall.out`.
 `ln -s libvisible.so.1.0.0 libvisible.so.1`
 `ln -s libvisible.so.1 libvisible.so`
 
-Now let's look at the symbol table:
+Now let's look at the symbol table: (Use `objdump -t -C` instead, gives better symbols)
 
 `objdump -t libvisible.so.1.0.0` which contains:
 `ZN17my_lib_visibility9factorialEm` and `ZN17my_lib_visibility15computeNchooseKEmm`
@@ -118,7 +118,29 @@ However, note that the factorial function is now visible in the shared library.
 
 `g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../library_visibility/ -lvisible -Wl,-rpath,../library_visibility/ -o linked_dynamically_visible.out`
 
-If we want to hide those symbols, either recompile static library, or use linker scripts.
+If we want to hide those symbols, either recompile static library, or use linker scripts. Example???
+
+## Example 6: Symbol visibility and classes
+
+Set up shared library with class:
+
+`g++ -g -fPIC shape.cpp -shared -Wl,-soname,libshape.so.1 -o libshape.so.1.0.0`
+`ln -s libshape.so.1.0.0 libshape.so.1`
+`ln -s libshape.so.1 libshape.so`
+
+Linking example main:
+
+`g++ -std=c++14 -I.. using_shape.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_shape.out`
+
+Note: We can change the implementation of the function draw. As long as we don't change the ABI, we can everything, as the library is only loaded at startup time.
+
+## Example 7: Symbol visibility and more complicated class setups
+
+## Example 8: Templates
+
+## Example 9: Symbol visibility, classes and templates
+
+## Example 10: Dynamically loading library
 
 ## TODO
 
