@@ -1,0 +1,121 @@
+
+libshape.so:     file format elf64-x86-64
+
+SYMBOL TABLE:
+00000000000001c8 l    d  .note.gnu.build-id	0000000000000000              .note.gnu.build-id
+00000000000001f0 l    d  .gnu.hash	0000000000000000              .gnu.hash
+00000000000002d0 l    d  .dynsym	0000000000000000              .dynsym
+00000000000008b8 l    d  .dynstr	0000000000000000              .dynstr
+0000000000001346 l    d  .gnu.version	0000000000000000              .gnu.version
+00000000000013c8 l    d  .gnu.version_r	0000000000000000              .gnu.version_r
+0000000000001468 l    d  .rela.dyn	0000000000000000              .rela.dyn
+0000000000001648 l    d  .rela.plt	0000000000000000              .rela.plt
+00000000000019c0 l    d  .init	0000000000000000              .init
+00000000000019e0 l    d  .plt	0000000000000000              .plt
+0000000000001c40 l    d  .text	0000000000000000              .text
+00000000000023d0 l    d  .fini	0000000000000000              .fini
+00000000000023e0 l    d  .rodata	0000000000000000              .rodata
+0000000000002444 l    d  .eh_frame_hdr	0000000000000000              .eh_frame_hdr
+00000000000024e0 l    d  .eh_frame	0000000000000000              .eh_frame
+0000000000002788 l    d  .gcc_except_table	0000000000000000              .gcc_except_table
+0000000000202d68 l    d  .init_array	0000000000000000              .init_array
+0000000000202d78 l    d  .fini_array	0000000000000000              .fini_array
+0000000000202d80 l    d  .data.rel.ro	0000000000000000              .data.rel.ro
+0000000000202db8 l    d  .dynamic	0000000000000000              .dynamic
+0000000000202fb8 l    d  .got	0000000000000000              .got
+0000000000203000 l    d  .got.plt	0000000000000000              .got.plt
+0000000000203140 l    d  .data	0000000000000000              .data
+0000000000203150 l    d  .bss	0000000000000000              .bss
+0000000000000000 l    d  .comment	0000000000000000              .comment
+0000000000000000 l    d  .debug_aranges	0000000000000000              .debug_aranges
+0000000000000000 l    d  .debug_info	0000000000000000              .debug_info
+0000000000000000 l    d  .debug_abbrev	0000000000000000              .debug_abbrev
+0000000000000000 l    d  .debug_line	0000000000000000              .debug_line
+0000000000000000 l    d  .debug_str	0000000000000000              .debug_str
+0000000000000000 l    d  .debug_ranges	0000000000000000              .debug_ranges
+0000000000000000 l    df *ABS*	0000000000000000              crtstuff.c
+0000000000001c40 l     F .text	0000000000000000              deregister_tm_clones
+0000000000001c80 l     F .text	0000000000000000              register_tm_clones
+0000000000001cd0 l     F .text	0000000000000000              __do_global_dtors_aux
+0000000000203150 l     O .bss	0000000000000001              completed.7037
+0000000000202d78 l     O .fini_array	0000000000000000              __do_global_dtors_aux_fini_array_entry
+0000000000001d10 l     F .text	0000000000000000              frame_dummy
+0000000000202d68 l     O .init_array	0000000000000000              __frame_dummy_init_array_entry
+0000000000000000 l    df *ABS*	0000000000000000              shape.cpp
+00000000000023e0 l     O .rodata	0000000000000001              _ZStL19piecewise_construct
+0000000000203151 l     O .bss	0000000000000001              _ZStL8__ioinit
+0000000000001e4f l     F .text	0000000000000049              _Z41__static_initialization_and_destruction_0ii
+0000000000001e98 l     F .text	0000000000000015              _GLOBAL__sub_I_shape.cpp
+0000000000000000 l    df *ABS*	0000000000000000              crtstuff.c
+0000000000002784 l     O .eh_frame	0000000000000000              __FRAME_END__
+0000000000000000 l    df *ABS*	0000000000000000              
+0000000000002444 l       .eh_frame_hdr	0000000000000000              __GNU_EH_FRAME_HDR
+0000000000203140 l     O .data	0000000000000000              __dso_handle
+0000000000203148 l     O .data	0000000000000008              DW.ref.__gxx_personality_v0
+0000000000202db8 l     O .dynamic	0000000000000000              _DYNAMIC
+0000000000203150 l     O .data	0000000000000000              __TMC_END__
+0000000000203000 l     O .got.plt	0000000000000000              _GLOBAL_OFFSET_TABLE_
+00000000000023a7  w    F .text	000000000000000a              _ZSt19__iterator_categoryIPcENSt15iterator_traitsIT_E17iterator_categoryERKS2_
+0000000000000000       F *UND*	0000000000000000              _ZNSaIcED2Ev@@GLIBCXX_3.4
+0000000000203150 g       .data	0000000000000000              _edata
+0000000000001d8e g     F .text	00000000000000c1              _ZN9shape_lib5Shape4drawEv
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_S_copy_charsEPcS5_S5_@@GLIBCXX_3.4.21
+00000000000020cc  w    F .text	0000000000000078              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1IPcvEET_S7_RKS3_
+00000000000020cc  w    F .text	0000000000000078              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2IPcvEET_S7_RKS3_
+00000000000021fc  w    F .text	0000000000000137              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPcEEvT_S7_St20forward_iterator_tag
+0000000000000000       F *UND*	0000000000000000              __cxa_begin_catch@@CXXABI_1.3
+0000000000002333  w    F .text	0000000000000012              _ZN9__gnu_cxx17__is_null_pointerIcEEbPT_
+0000000000000000  w    F *UND*	0000000000000000              __cxa_finalize@@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              _ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_@@GLIBCXX_3.4
+0000000000001d44 g     F .text	000000000000001d              _ZN9shape_lib5ShapeD2Ev
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@@GLIBCXX_3.4.21
+0000000000000000       F *UND*	0000000000000000              vsnprintf@@GLIBC_2.2.5
+0000000000001d1a g     F .text	000000000000002a              _ZN9shape_lib5ShapeC1Ej
+0000000000002430  w    O .rodata	0000000000000013              _ZTSN9shape_lib5ShapeE
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_set_lengthEm@@GLIBCXX_3.4.21
+0000000000000000       O *UND*	0000000000000000              _ZTVN10__cxxabiv117__class_type_infoE@@CXXABI_1.3
+0000000000000000       F *UND*	0000000000000000              _ZSt19__throw_logic_errorPKc@@GLIBCXX_3.4
+00000000000023d0 g     F .fini	0000000000000000              _fini
+0000000000001d1a g     F .text	000000000000002a              _ZN9shape_lib5ShapeC2Ej
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE13_M_local_dataEv@@GLIBCXX_3.4.21
+00000000000023b1  w    F .text	000000000000001c              _ZSt10__distanceIPcENSt15iterator_traitsIT_E15difference_typeES2_S2_St26random_access_iterator_tag
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_M_dataEPc@@GLIBCXX_3.4.21
+0000000000000000       F *UND*	0000000000000000              __cxa_atexit@@GLIBC_2.2.5
+0000000000000000       F *UND*	0000000000000000              _ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@@GLIBCXX_3.4.21
+0000000000002345  w    F .text	0000000000000062              _ZSt8distanceIPcENSt15iterator_traitsIT_E15difference_typeES2_S2_
+00000000000020b0  w    F .text	000000000000001b              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_Alloc_hiderD1Ev
+0000000000000000       F *UND*	0000000000000000              _ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@@GLIBCXX_3.4
+0000000000202d80  w    O .data.rel.ro	0000000000000028              _ZTVN9shape_lib5ShapeE
+0000000000000000       F *UND*	0000000000000000              _ZdlPvm@@CXXABI_1.3.9
+0000000000000000       F *UND*	0000000000000000              _ZNSolsEPFRSoS_E@@GLIBCXX_3.4
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_Alloc_hiderC1EPcRKS3_@@GLIBCXX_3.4.21
+00000000000020b0  w    F .text	000000000000001b              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_Alloc_hiderD2Ev
+0000000000000000       F *UND*	0000000000000000              _ZNSaIcED1Ev@@GLIBCXX_3.4
+0000000000202da8  w    O .data.rel.ro	0000000000000010              _ZTIN9shape_lib5ShapeE
+0000000000000000       F *UND*	0000000000000000              _ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7_M_dataEv@@GLIBCXX_3.4.21
+0000000000000000       F *UND*	0000000000000000              __stack_chk_fail@@GLIBC_2.4
+00000000000019c0 g     F .init	0000000000000000              _init
+0000000000001d44 g     F .text	000000000000001d              _ZN9shape_lib5ShapeD1Ev
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv@@GLIBCXX_3.4.21
+0000000000000000       O *UND*	0000000000000000              _ZSt4cout@@GLIBCXX_3.4
+0000000000002144  w    F .text	000000000000005b              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPcEEvT_S7_
+0000000000203158 g       .bss	0000000000000000              _end
+00000000000021a0  w    F .text	000000000000005b              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE16_M_construct_auxIPcEEvT_S7_St12__false_type
+0000000000000000       F *UND*	0000000000000000              __cxa_rethrow@@CXXABI_1.3
+0000000000203150 g       .bss	0000000000000000              __bss_start
+0000000000000000       F *UND*	0000000000000000              _ZNSt8ios_base4InitC1Ev@@GLIBCXX_3.4
+0000000000001ead  w    F .text	0000000000000062              _ZNSt7__cxx119to_stringEj
+0000000000001d62 g     F .text	000000000000002b              _ZN9shape_lib5ShapeD0Ev
+0000000000000000       F *UND*	0000000000000000              __cxa_end_catch@@CXXABI_1.3
+0000000000000000       F *UND*	0000000000000000              __gxx_personality_v0@@CXXABI_1.3
+0000000000001f0f  w    F .text	00000000000001a0              _ZN9__gnu_cxx12__to_xstringINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEcEET_PFiPT0_mPKS8_P13__va_list_tagEmSB_z
+0000000000000000  w      *UND*	0000000000000000              _ITM_deregisterTMCloneTable
+0000000000000000       F *UND*	0000000000000000              _Unwind_Resume@@GCC_3.0
+0000000000000000       F *UND*	0000000000000000              _ZNSaIcEC1Ev@@GLIBCXX_3.4
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERmm@@GLIBCXX_3.4.21
+0000000000000000  w      *UND*	0000000000000000              __gmon_start__
+0000000000000000  w      *UND*	0000000000000000              _ITM_registerTMCloneTable
+0000000000000000       F *UND*	0000000000000000              _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE11_M_capacityEm@@GLIBCXX_3.4.21
+0000000000000000       F *UND*	0000000000000000              _ZNSt8ios_base4InitD1Ev@@GLIBCXX_3.4
+
+
