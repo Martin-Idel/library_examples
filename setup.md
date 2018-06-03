@@ -136,13 +136,13 @@ Note: We can change the implementation of the function draw. As long as we don't
 
 ## Example 7: Symbol visibility and more complicated class setups
 
-Set up shared library with classes again:
+Set up shared library with classes:
 
 `g++ -g -fPIC shape.cpp corner_number.cpp -shared -Wl,-soname,libshape.so.1 -o libshape.so.1.0.0`
 `ln -s libshape.so.1.0.0 libshape.so.1`
 `ln -s libshape.so.1 libshape.so`
 
-Linking example main again:
+Linking example main:
 
 `g++ -std=c++14 -I.. using_shape.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_shape.out`
 
@@ -151,6 +151,7 @@ Results in a warning, because we declared `CornerNumber` used in `Shape` as hidd
 - explicitly declare `Shape` as "default" (bad)
 - compile with `fvisibility=hidden` and declare `Shape` as "default" and don't declare `CornerNumber` as hidden (bad)
 - Forward declare your class `Shape`
+- Expose only the function symbols
 
 But everything works, so where is the problem?
 
@@ -158,21 +159,35 @@ The "= default" in `shape.cpp` is not very nice, let's just put it in the header
 
 `Warning: undefined reference to »shape_lib::CornerNumber::~CornerNumber()«`
 
-- compiler needs symbol definition to generate functions, hence the previous warning
+- compiler needs symbol definition to generate functions - in this case, the generated compiler needs to call the destructor of CornerNumber. This information is hidden, hence the previous warning
 - the first two "fixes" above don't actually change anything
 - only forwarding works: then the compiler actually never inlines, so the information is not necessary
 
-NEEDED: only expose functions - is that enough to derive?
+## Example 8: Exposing function symbols instead of classes
 
-## Example 8: Templates
+Compile, link and use:
+`g++ -g -fPIC shape.cpp corner_number.cpp -shared -Wl,-soname,libshape.so.1 -o libshape.so.1.0.0`
+`ln -s libshape.so.1.0.0 libshape.so.1`
+`ln -s libshape.so.1 libshape.so`
+`g++ -std=c++14 -I.. using_shape.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_shape.out`
 
-## Example 9: Symbol visibility, classes and templates
+Works. But use a derived class:
+
+`g++ -std=c++14 -I.. using_square.cpp square.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_square.out`
+
+We get an error:
+
+`Warning: undefined reference to »typeinfo for shape_lib::Shape«`
+
+The warning is pretty good and tells us (for instance) that he pretty obviously seems to be really missing some typeinfo:
+
+`Warning: »shape_lib::Square« with higher visibility than the type of its field »shape_lib::Square::<anonym>«`
+
+## Example 9: Templates
 
 ## Example 10: Dynamically loading library
 
 ## TODO
 
 - Windows VM...
-- More on objdump and/or readelf
-- Templates and symbols
-- Class export symbols
+- More on objdump, nm and readelf

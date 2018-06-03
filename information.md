@@ -8,6 +8,9 @@
 <https://www.mpcdf.mpg.de/services/computing/software/libraries/static-and-dynamic-linking-on-linux-systems>
 <https://gcc.gnu.org/wiki/Visibility>
 <https://www.ibm.com/developerworks/aix/library/au-aix-symbol-visibility-part2/index.html>
+<https://lwn.net/Articles/276782/>
+<https://www.symantec.com/connect/articles/dynamic-linking-linux-and-windows-part-two>
+<https://jvns.ca/blog/2014/09/06/how-to-read-an-executable/>
 
 ## Environment Variables
 
