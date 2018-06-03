@@ -191,3 +191,4 @@ The warning is pretty good and tells us (for instance) that he pretty obviously 
 
 - Windows VM...
 - More on objdump, nm and readelf
+- How does -fvisibility-inlines-hidden work?
