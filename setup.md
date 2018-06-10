@@ -183,9 +183,74 @@ The warning is pretty good and tells us (for instance) that he pretty obviously 
 
 `Warning: »shape_lib::Square« with higher visibility than the type of its field »shape_lib::Square::<anonym>«`
 
-## Example 9: Templates
+## Example 9: Inline function visibility
 
-## Example 10: Dynamically loading library
+Code example derived from example given by user Ivan in:
+
+<https://stackoverflow.com/questions/48621251/why-fvisibility-inlines-hidden-is-not-the-default>
+
+### Global visibility of everything
+
+If we compile the library (don't forget `ln -s libshared.so.1.0.0 libshared.so.1` and `ln -s libshared.so.1 libshared.so`):
+
+`g++ -g -fPIC shared.cpp -shared -Wl,-soname,libshared.so.1 -o libshared.so.1.0.0`
+`g++ -g -I. main.cpp -L. -lshared -Wl,-rpath,. -o try.out`
+
+we get the following behaviour: static local and function pointers are identical:
+
+shared() - static local 0x55b118b77031
+shared() - function ptr 0x55b1189767c2
+main() - static local 0x55b118b77031
+main() - function ptr 0x55b1189767c2
+
+we also get two symbols (a weak and a unique global) when looking at symbols:
+
+`objdump -T -C libshared.so | grep "foo"`
+0000000000201029 u    DO .bss   0000000000000001  Base        foo()::a
+0000000000000701  w   DF .text  000000000000000d  Base        foo()
+
+### Inline Functions hidden
+
+If we compile using the "-fvisiblity-inlines-hidden" flag  (don't forget `ln -s libshared.so.1.0.0 libshared.so.1` and `ln -s libshared.so.1 libshared.so`):
+
+`g++ -g -fPIC -fvisibility-inlines-hidden shared.cpp -shared -Wl,-soname,libshared.so.1 -o libshared.so.1.0.0`
+`g++ -g -I. main.cpp -L. -lshared -Wl,-rpath,. -o try.out`
+
+we get the following behaviour: static local pointers are identical, but function pointers are not:
+
+shared() - static local 0x55a115b27031
+shared() - function ptr 0x7f795d5406ae
+main() - static local 0x55a115b27031
+main() - function ptr 0x55a1159267a2
+
+we also get only one symbol (the unique global) when looking at it:
+
+`objdump -T -C libshared.so | grep "foo"`
+0000000000201029 u    DO .bss   0000000000000001  Base        foo()::a
+
+In principle, this is NOT standard compliant!
+
+### Completely hidden functions
+
+If we compile using both "-fvisiblity-inlines-hidden" and "-fvisibility="hidden"" flag  (don't forget `ln -s libshared.so.1.0.0 libshared.so.1` and `ln -s libshared.so.1 libshared.so`):
+
+`g++ -g -fPIC -fvisibility="hidden" -fvisibility-inlines-hidden shared.cpp -shared -Wl,-soname,libshared.so.1 -o libshared.so.1.0.0`
+`g++ -g -I. main.cpp -L. -lshared -Wl,-rpath,. -o try.out`
+
+we get the following behaviour: the main function just doesn't know about the other library's function, all pointers are different:
+
+shared() - static local 0x7f8320c84029
+shared() - function ptr 0x7f8320a8366e
+main() - static local 0x55be67230031
+main() - function ptr 0x55be6702f772
+
+we also have no exported symbol for `foo`.
+
+For class member functions and header files, if we manually export the method symbol in `shared.cpp`, we should get the behaviour as when using only the "-fvisibility-inlines-hidden" flag - here, we get the first behaviour.
+
+## Example 10: Templates
+
+## Example 11: Dynamically loading library
 
 ## TODO
 

@@ -26,3 +26,4 @@
 - don't rely on "static" keyword
 - Use `-fvisibility=hidden` or `-fvisibility=default` exclusively (when library is small, the latter is ok)
 - Use `-fvisibility=hidden` when also compiling for Windows (similar erros on both platforms)
+- Use `-fvisibility-inlines-hidden` and be sure to never do anything with and inline function pointer than to call it
