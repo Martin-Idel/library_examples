@@ -14,7 +14,7 @@
 - Format or "real name" is not fixed. In glibc it is "current, revision, age", where "age" reflects backwards compatibility.
 - Often used for "real version": semantic versioning i.e. `mylib.so.1.2.4` (e.g. MongoDB - OGRE3D, but there, the "real name"=soname is also the soname)
 - Have `mylib.so.1` be a symlink to the highest "real version"
-- Have the library `mylib.so` be a symlink to `mylib.so.1`.
+- Have the library `mylib.so` be a symlink to `mylib.so.1`
 
 ### Symbol versioning
 
@@ -27,3 +27,4 @@
 - Use `-fvisibility=hidden` or `-fvisibility=default` exclusively (when library is small, the latter is ok)
 - Use `-fvisibility=hidden` when also compiling for Windows (similar erros on both platforms)
 - Use `-fvisibility-inlines-hidden` and be sure to never do anything with and inline function pointer than to call it
+- Don't use `__attribute__ (visibility=hidden)` on namespaces (gcc only). This will make porting to other compilers harder

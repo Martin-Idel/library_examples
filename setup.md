@@ -55,16 +55,19 @@ Look at e.g. the SONAME:
 
 `g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../first_library/ -lfirst_shared -o linked_dynamically.out`
 
+Now see:
+
+`objdump -p linked_dynamically.out` contains `NEEDED libfirst_shared.so.1`
+
+However, the library is not found automatically - see `ldd linked_dynamically.out`
+
 For running, need to update LD_LIBRARY_PATH first:
 `export LD_LIBRARY_PATH=/home/martin/Documents/SharedLibraries/example3/first_library`
-Also see:
-`objdump -p linked_dynamically.out` contains `NEEDED libfirst_shared.so.1`
-(`-p` displays information from the ELF header)
 
 Alternatively (better), use the `rpath` to provide the information:
 `g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../first_library/ -lfirst_shared -Wl,-rpath,../first_library/ -o linked_dynamically.out`
 
-See the "RPATH" part of `objcump -p linked_dynamicall.out`.
+See the "RPATH" part of `objdump -p linked_dynamicall.out`.
 
 ## Example 4: Symbol visibility in a shared library
 

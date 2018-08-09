@@ -11,6 +11,8 @@
 <https://lwn.net/Articles/276782/>
 <https://www.symantec.com/connect/articles/dynamic-linking-linux-and-windows-part-two>
 <https://jvns.ca/blog/2014/09/06/how-to-read-an-executable/>
+<https://linux-audit.com/elf-binaries-on-linux-understanding-and-analysis/>
+<https://eli.thegreenplace.net/2011/11/03/position-independent-code-pic-in-shared-libraries/>
 
 ## Environment Variables
 
@@ -26,3 +28,5 @@ LD_DEBUG
 
 - `objdump` to get information about binaries
 - `nm` to get symbol information, i.e. `nm -CD` gives a lot of info about symbols
+- `ldd` see dependencies
+- `lddtree` see complete tree of dependencies (similar to `dependencywalker` on Windows)
