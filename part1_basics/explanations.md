@@ -38,7 +38,7 @@ Need to create position independent code first (turns out to have the same size 
 
 `g++ -std=c++14 -g -c -fPIC first_library.cpp -o first_poi_library_file.o`
 
-Note: Difference between -fpic and -fPIC (latter will always work but binary might be larger) Example???
+Note: Difference between -fpic and -fPIC (latter will always work but binary might be larger)
 
 `g++ -shared -Wl,-soname,libfirst_shared.so.1 -o libfirst_shared.so.1.0.0 first_poi_library_file.o`
 
@@ -73,4 +73,14 @@ See the "RPATH" part of `objdump -p linked_dynamicall.out`.
 
 ## Example 4: Dynamic lib
 
-############################################################## TODO
+Compile shared library
+- `g++ -std=c++14 -g -c -fPIC first_library.cpp -o first_poi_library_file.o`
+- `g++ -shared -Wl,-soname,libfirst_shared.so.1 -o libfirst_shared.so.1.0.0 first_poi_library_file.o`
+- `ln -s libfirst_shared.so.1.0.0 libfirst_shared.so.1` 
+- `ln -s libfirst_shared.so.1 libfirst_shared.so` 
+
+Note that we have a problem here: We need to use the mangled symbol name as that is the "real" symbol name. `objdump -t libfirst.so` to the rescue!
+It would be better/easier to use `extern C`, because C doesn't do name mangling like that.
+
+Load dynamically
+- `g++ -std=c++14 -g -I.. dynamic_loading.cpp -ldl -Wl,-rpath,../first_library/ -o dynamic_loading.out`
