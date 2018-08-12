@@ -3,7 +3,9 @@
 ## Building
 
 - Use the rpath of a `.so` instead of relying on the `LD_LIBRARY_PATH`.
-- Always build with `-fPIC` option (don't use `-fpic` and don't omit), as shared libraries need it.
+- Always build with `-fPIC` option, as shared libraries need it.
+- `-fpic` provides better performance, but it is less general than `-fPIC` - it can only work for small libraries.
+- When dynamically loading library functions, export the functions via `extern "C"`. When loading classes, provide constructor and deletion factories to circumvent issues with `new` and `delete` overloads.
 
 ## Versioning
 

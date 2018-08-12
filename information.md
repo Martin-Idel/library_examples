@@ -13,6 +13,7 @@
 <https://jvns.ca/blog/2014/09/06/how-to-read-an-executable/>
 <https://linux-audit.com/elf-binaries-on-linux-understanding-and-analysis/>
 <https://eli.thegreenplace.net/2011/11/03/position-independent-code-pic-in-shared-libraries/>
+<https://www.tldp.org/HOWTO/html_single/C++-dlopen/>
 
 ## Environment Variables
 
