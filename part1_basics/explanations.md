@@ -52,6 +52,8 @@ We need to create symlinks to correct name:
 
 Look at e.g. the SONAME:
 `objdump -p libfirst_shared.so`
+or sections (`-s` or `-sections` with readelf)
+or disassembly (`objdump -d`);
 
 ### Linking a shared library
 
