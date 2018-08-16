@@ -24,10 +24,11 @@ LD_DEBUG
 - `export LD_DEBUG=libs` (outputs library search paths)
 - `export LD_DEBUG=versions` (outputs dependency versions)
 - `export LD_DEBUG=help` (outputs options when trying to run program)
+- `export LD_DEBUG=statistics` (outputs symbol statistics)
 
 ## Programs
 
-- `objdump` to get information about binaries
-- `nm` to get symbol information, i.e. `nm -CD` gives a lot of info about symbols
+- `objdump`, `readelf` or `nm` to get information about binaries on linux, `dumpbin` on Windows
 - `ldd` see dependencies
 - `lddtree` see complete tree of dependencies (similar to `dependencywalker` on Windows)
+- `patchelf` can patch linker information, e.g. sonames (don't do it)

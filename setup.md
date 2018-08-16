@@ -121,7 +121,7 @@ However, note that the factorial function is now visible in the shared library.
 
 `g++ -std=c++14 -I.. linking_a_shared_library.cpp -L../library_visibility/ -lvisible -Wl,-rpath,../library_visibility/ -o linked_dynamically_visible.out`
 
-If we want to hide those symbols, either recompile static library, or use linker scripts. Example???
+If we want to hide those symbols, either recompile static library, or use linker scripts.
 
 ## Example 6: Symbol visibility and classes
 

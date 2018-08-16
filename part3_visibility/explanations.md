@@ -32,7 +32,7 @@ Now we have e.g.:
 The second column indicates `l`, which implies that this symbol (which is a function `F`) is local, i.e. not exported.
 
 Hence, export symbol: `__attribute__ ((visibility ("default")))`
-Also: look at the size difference (e.g. 10184 with only one symbol exposed, 10352 with more symbols)
+Also: look at the size difference (e.g. 10184 with only one symbol exposed, 10352 with more symbols) or look at runtime using `export LD_DEBUG=statistics`.
 
 ## Example 2: Symbol visibility while linking a static library in a shared library
 
