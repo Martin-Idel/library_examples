@@ -13,8 +13,8 @@ int main()
 		std::cout << "Library could not be opened" << std::endl;
         return 0;
 	}
-
-    uint64_t (*addingTwoNumbers)(uint64_t, uint64_t) = reinterpret_cast<uint64_t (*)(uint64_t, uint64_t)>(dlsym(my_lib_handle,"addingTwoNumbers"));
+    uint64_t (*addingTwoNumbers)(uint64_t, uint64_t) = reinterpret_cast<uint64_t (*)(uint64_t, uint64_t)>(dlsym(my_lib_handle,"_ZN6my_lib16addingTwoNumbersEmm"));
+    // uint64_t (*addingTwoNumbers)(uint64_t, uint64_t) = reinterpret_cast<uint64_t (*)(uint64_t, uint64_t)>(dlsym(my_lib_handle,"addingTwoNumbers"));
 
 	if(addingTwoNumbers==NULL) {
 		std::cout << "Function could not be loaded" << std::endl;

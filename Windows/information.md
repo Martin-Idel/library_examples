@@ -35,7 +35,8 @@ LD_DEBUG
 
 ## Programs
 
-- `objdump`, `readelf` or `nm` to get information about binaries on linux, `dumpbin` on Windows
+- `objdump` to get information about binaries
+- `nm` to get symbol information, i.e. `nm -CD` gives a lot of info about symbols
 - `ldd` see dependencies
 - `lddtree` see complete tree of dependencies (similar to `dependencywalker` on Windows)
 - `patchelf` can patch linker information, e.g. sonames (don't do it)

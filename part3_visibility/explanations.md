@@ -66,7 +66,9 @@ Linking example main:
 
 `g++ -std=c++14 -I.. using_shape.cpp -L../shared_class/ -lshape -Wl,-rpath,../shared_class/ -o using_shape.out`
 
-Note: We can change the implementation of the function draw. As long as we don't change the ABI, we can change everything, as the library is only loaded at startup time.
+Note: We can change the implementation of the function draw. As long as we don't change the ABI, we can change everything, as the library is only loaded at startup time. 
+
+A lot more symbols get exported with respect to exporting all functions separately. Those are for instance vtables, generated functions, etc.
 
 ## Example 4: Symbol visibility and more complicated class setups
 
@@ -102,6 +104,7 @@ See this at work in `easy_example`, compiling with
 `g++ -g -std=c++14 namespace.cpp -o namespace.out`
 
 and declaring `Bar` with default visibility or not results in warning or not...
+See also <https://stackoverflow.com/questions/50633049/symbol-visibility-and-gcc-warnings>
 
 ## Example 5: Exposing function symbols instead of classes
 

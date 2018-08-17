@@ -50,10 +50,10 @@ We need to create symlinks to correct name:
 - `ln -s libfirst_shared.so.1.0.0 libfirst_shared.so.1` - necessary because when linking, SONAME is used as correct library (see below). This symlink is needed at startup time.
 - `ln -s libfirst_shared.so.1 libfirst_shared.so` - necessary because -l looks for .so or .a files. This symlink is needed at link time.
 
-Look at e.g. the SONAME:
-`objdump -p libfirst_shared.so`
-or sections (`-s` or `-sections` with readelf)
-or disassembly (`objdump -d`);
+Look at 
+- SONAME:`objdump -p libfirst_shared.so`
+- sections (`-s` or `-sections` with readelf)
+- disassembly (`objdump -d`);
 
 ### Linking a shared library
 
@@ -82,7 +82,7 @@ Compile shared library
 - `ln -s libfirst_shared.so.1 libfirst_shared.so` 
 
 Note that we have a problem here: We need to use the mangled symbol name as that is the "real" symbol name. `objdump -t libfirst.so` to the rescue!
-It would be better/easier to use `extern C`, because C doesn't do name mangling like that.
+It would be better/easier to use `extern C`, because C doesn't do name mangling like that (see commented out code).
 
 Load dynamically
 - `g++ -std=c++14 -g -I.. dynamic_loading.cpp -ldl -Wl,-rpath,../first_library/ -o dynamic_loading.out`
