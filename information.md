@@ -1,4 +1,4 @@
-# Useful Knowledge
+# Additional information
 
 ## General
 
@@ -18,7 +18,8 @@
 <https://eli.thegreenplace.net/2011/11/03/position-independent-code-pic-in-shared-libraries/>
 <https://www.symantec.com/connect/articles/dynamic-linking-linux-and-windows-part-one>
 
-## PE and Windows
+## PE
+
 <https://adrianhenke.wordpress.com/2008/12/05/create-lib-file-from-dll/>
 <https://www.symantec.com/connect/articles/dynamic-linking-linux-and-windows-part-two>
 
